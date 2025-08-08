@@ -20,8 +20,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    cocktailsData: [
-      {
+    cocktailsData: {
         strDrink: "Margarita",
         strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
         strCategory: "Cocktail",
@@ -31,37 +30,6 @@ export const Primary: Story = {
         measureList: ["1 1/2 oz", "1/2 oz", "1 oz"],
         ingredientList: ["Tequila", "Triple sec", "Lime juice"],
       },
-      {
-        strDrink: "Mojito",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
-        strCategory: "Cocktail",
-        strAlcoholic: "Alcoholic",
-        strGlass: "Highball glass",
-        strInstructions: "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...",
-        measureList: ["2-3 oz", "2 tsp", "1 oz"],
-        ingredientList: ["White rum", "Sugar", "Lime juice", "Mint", "Soda water"],
-      },
-      {
-        strDrink: "Mojito",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
-        strCategory: "Cocktail",
-        strAlcoholic: "Alcoholic",
-        strGlass: "Highball glass",
-        strInstructions: "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...",
-        measureList: ["2-3 oz", "2 tsp", "1 oz"],
-        ingredientList: ["White rum", "Sugar", "Lime juice", "Mint", "Soda water"],
-      },
-      {
-        strDrink: "Mojito",
-        strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/bry4qh1582751040.jpg",
-        strCategory: "Cocktail",
-        strAlcoholic: "Alcoholic",
-        strGlass: "Highball glass",
-        strInstructions: "Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with ice...",
-        measureList: ["2-3 oz", "2 tsp", "1 oz"],
-        ingredientList: ["White rum", "Sugar", "Lime juice", "Mint", "Soda water"],
-      }
-    ]
 
   },
 };

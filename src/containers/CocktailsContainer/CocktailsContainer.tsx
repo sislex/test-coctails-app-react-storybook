@@ -1,7 +1,8 @@
 import './CocktailsContainer.scss';
 import {NavBarComponent} from "../../components/NavBarComponent/NavBarComponent";
 import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
-import {CardComponent, ICocktailsData} from "../../components/CardComponent/CardComponent";
+import {ICocktailsData} from "../../components/CardComponent/CardComponent";
+import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
 // import { useParams } from 'react-router-dom';
 
 export function CocktailsContainer() {
@@ -26,14 +27,13 @@ export function CocktailsContainer() {
                         itemsList={itemsList}
                         activeId={activeId}
                         onItemClick={handleSidebarItemClick}
-                        mainPage={true}
                     ></SideBarComponent>
                 </div>
 
                 <div className="cocktails-main-content">
-                    <CardComponent
+                    <CardListComponent
                         cocktailsData={cocktailsData}
-                    ></CardComponent>
+                    ></CardListComponent>
                 </div>
             </div>
         </div>

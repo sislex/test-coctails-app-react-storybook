@@ -23,7 +23,8 @@ const meta = {
     }
   },
   args: {
-    onItemClick: fn()
+    onItemClick: fn(),
+    onCloseClick: fn(),
   },
 } satisfies Meta<typeof SideBarComponent>;
 
@@ -34,14 +35,5 @@ export const Primary: Story = {
   args: {
     itemsList: ['a', 'b', 'c', 'd'],
     activeId: 'c',
-    mainPage: true,
-  },
-};
-
-export const MinPage: Story = {
-  args: {
-    itemsList: ['a', 'b', 'c', 's'],
-    activeId: 's',
-    mainPage: false,
   },
 };

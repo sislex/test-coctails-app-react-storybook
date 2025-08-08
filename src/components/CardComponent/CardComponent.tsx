@@ -1,7 +1,7 @@
 import './CardComponent.scss';
 
 export interface CardComponentProps {
-    cocktailsData: ICocktailsData[];
+    cocktailsData: ICocktailsData;
 }
 export interface ICocktailsData {
     measureList: string[];
@@ -17,45 +17,38 @@ export interface ICocktailsData {
 export function CardComponent({cocktailsData}: CardComponentProps) {
     return (
         <div className="card-container">
-            {cocktailsData.map((cocktail, index) => (
-                <div
-                    key={index}
-                    className="card"
-                >
-                    <div className="card-body">
-                        <img
-                            src={cocktail.strDrinkThumb}
-                            alt="Cocktail"
-                        />
+            <div className="card-body">
+                <img
+                    src={cocktailsData.strDrinkThumb}
+                    alt="Cocktail"
+                />
 
-                        <div className="card-text">
-                            <h3>{cocktail.strDrink}</h3>
-                            <h5>{cocktail.strCategory}</h5>
-                            <h5>{cocktail.strAlcoholic}</h5>
-                            <h5>{cocktail.strGlass}</h5>
+                <div className="card-text">
+                    <h3>{cocktailsData.strDrink}</h3>
+                    <h5>{cocktailsData.strCategory}</h5>
+                    <h5>{cocktailsData.strAlcoholic}</h5>
+                    <h5>{cocktailsData.strGlass}</h5>
 
-                            <h4>Instructions</h4>
-                            <p>
-                                {cocktail.strInstructions}
-                            </p>
+                    <h4>Instructions</h4>
+                    <p>
+                        {cocktailsData.strInstructions}
+                    </p>
 
-                            <h4>List of ingredients</h4>
-                            <div className="card-ingredients-list">
-                                {cocktail.measureList?.map((measure, index) => (
-                                    <div key={index} className="card-ingredient">
-                                        <span className="measure">{measure}</span>
-                                        <span className="ingredient">
-                                            {cocktail.ingredientList?.[index]}
-                                        </span>
-                                    </div>
-                                ))}
+                    <h4>List of ingredients</h4>
+                    <div className="card-ingredients-list">
+                        {cocktailsData.measureList?.map((measure, index) => (
+                            <div key={index} className="card-ingredient">
+                                <span className="measure">{measure}</span>
+                                <span className="ingredient">
+                                    {cocktailsData.ingredientList?.[index]}
+                                </span>
                             </div>
-
-                        </div>
-
+                        ))}
                     </div>
+
                 </div>
-            ))}
+
+            </div>
         </div>
     );
 }

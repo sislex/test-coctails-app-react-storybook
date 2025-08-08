@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import {NavBarComponent} from './NavBarComponent';
 import './NavBarComponent.scss';
 import '../../index.css';
+import {fn} from "storybook/test";
 
 const meta = {
   title: 'Components/NavBarComponent',
@@ -11,9 +12,10 @@ const meta = {
   },
   tags: [],
   argTypes: {
-    backgroundColor: { control: 'color' },
   },
-  args: {},
+  args: {
+    onMenuButtonClick: fn()
+  },
 } satisfies Meta<typeof NavBarComponent>;
 
 export default meta;

@@ -19,7 +19,6 @@ export function SideBarContainer() {
                 itemsList={itemsList}
                 activeId={activeId}
                 onItemClick={handleSidebarItemClick}
-                mainPage={true}
             ></SideBarComponent>
         </div>
     );

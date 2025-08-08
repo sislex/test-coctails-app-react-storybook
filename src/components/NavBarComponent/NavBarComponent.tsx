@@ -5,7 +5,7 @@ export function NavBarComponent() {
         <header className="navbar sticky-top">
 
             <div className="logo">
-                Logo
+                <p>Logo</p>
             </div>
 
             <div className="sidebar-button">

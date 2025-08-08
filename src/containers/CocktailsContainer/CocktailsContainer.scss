@@ -6,7 +6,19 @@
   max-width: 1024px;
   align-self: center;
 
-  .cocktails-sidebar-content {
-    width: 25%;
+  .cocktails-content {
+    display: flex;
+    flex-direction: row;
+
+    .cocktails-sidebar-content {
+      width: 25%;
+    }
+
+    .cocktails-main-content {
+      width: 75%;
+    }
+
   }
+
+
 }

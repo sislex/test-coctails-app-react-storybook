@@ -40,7 +40,6 @@ export function CardComponent({cocktailsData}: CardComponentProps) {
                             </p>
 
                             <h4>List of ingredients</h4>
-
                             <div className="card-ingredients-list">
                                 {cocktail.measureList?.map((measure, index) => (
                                     <div key={index} className="card-ingredient">
@@ -51,7 +50,9 @@ export function CardComponent({cocktailsData}: CardComponentProps) {
                                     </div>
                                 ))}
                             </div>
+
                         </div>
+
                     </div>
                 </div>
             ))}

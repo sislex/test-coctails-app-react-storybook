@@ -2,7 +2,7 @@ import './NavBarComponent.scss';
 
 export function NavBarComponent() {
     return (
-        <header className="navbar bg sticky-top">
+        <header className="navbar sticky-top">
 
             <div className="logo">
                 Logo

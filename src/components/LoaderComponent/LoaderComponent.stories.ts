@@ -1,19 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import {CocktailsContainer} from './CocktailsContainer';
-import './CocktailsContainer.scss';
+import {LoaderComponent} from './LoaderComponent';
+import './LoaderComponent.scss';
 import '../../index.css';
 
 const meta = {
-  title: 'Components/CocktailsContainer',
-  component: CocktailsContainer,
+  title: 'Components/LoaderComponent',
+  component: LoaderComponent,
   parameters: {
     layout: 'fullscreen',
   },
   tags: [],
   argTypes: {
+    backgroundColor: { control: 'color' },
   },
   args: {},
-} satisfies Meta<typeof CocktailsContainer>;
+} satisfies Meta<typeof LoaderComponent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

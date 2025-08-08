@@ -33,6 +33,15 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     itemsList: ['a', 'b', 'c', 'd'],
-    activeId: 'c'
+    activeId: 'c',
+    mainPage: true,
+  },
+};
+
+export const MinPage: Story = {
+  args: {
+    itemsList: ['a', 'b', 'c', 's'],
+    activeId: 's',
+    mainPage: false,
   },
 };

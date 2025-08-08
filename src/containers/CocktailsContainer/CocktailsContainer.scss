@@ -1,0 +1,12 @@
+.cocktails-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 360px;
+  max-width: 1024px;
+  align-self: center;
+
+  .cocktails-sidebar-content {
+    width: 25%;
+  }
+}

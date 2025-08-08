@@ -4,14 +4,15 @@ export interface SideBarComponentProps {
     itemsList?: string[];
     activeId?: string;
     onItemClick?: (key: string) => void;
+    mainPage: boolean;
 }
 
-export function SideBarComponent({ itemsList, activeId, onItemClick }: SideBarComponentProps) {
+export function SideBarComponent({ itemsList, activeId, onItemClick, mainPage }: SideBarComponentProps) {
 
     return (
         <div className="sidebar">
 
-            <header className="sidebar-header">
+            <header className={`sidebar-header ${mainPage ? 'sidebar-main' : ''}`}>
                 <div className="sidebar-logo">
                     Logo
                 </div>

@@ -15,17 +15,21 @@ export function CocktailsContainer() {
     };
 
     return (
-        <div>
+        <div className="cocktails-container">
             <header className="cocktails-navbar">
                 <NavBarComponent></NavBarComponent>
             </header>
             <div className="cocktails-content">
-                <SideBarComponent
-                    itemsList={itemsList}
-                    activeId={activeId}
-                    onItemClick={handleSidebarItemClick}
-                ></SideBarComponent>
-                <div className="coctails-main-content">
+                <div className="cocktails-sidebar-content">
+                    <SideBarComponent
+                        itemsList={itemsList}
+                        activeId={activeId}
+                        onItemClick={handleSidebarItemClick}
+                        mainPage={true}
+                    ></SideBarComponent>
+                </div>
+
+                <div className="cocktails-main-content">
 
                 </div>
             </div>

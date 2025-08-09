@@ -1,0 +1,49 @@
+.notification {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  bottom: 16px;
+  z-index: 1000;
+
+  .notification-panel {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--bs-danger-bg-subtle);
+    border: 1px var(--bs-danger-border-subtle) solid;
+    border-radius: 6px;
+    padding: 16px;
+    align-items: center;
+    width: 50%;
+
+    .notification-text {
+      display: flex;
+      flex-direction: row;
+
+      .notification-icon {
+        display: flex;
+        align-self: center;
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+      }
+
+      span {
+        flex: 1;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .notification-panel {
+      width: 80%;
+      max-width: 80%;
+    }
+  }
+}

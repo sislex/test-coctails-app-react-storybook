@@ -17,7 +17,7 @@ export interface ICocktailsData {
 
 export function CardListComponent({cocktailsData}: CardComponentProps) {
     return (
-        <div className="card-container">
+        <div>
             {cocktailsData.map((cocktail, index) => (
                 <div
                     key={index}

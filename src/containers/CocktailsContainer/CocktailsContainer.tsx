@@ -1,39 +1,32 @@
 import './CocktailsContainer.scss';
 import {NavBarComponent} from "../../components/NavBarComponent/NavBarComponent";
-import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
 import {ICocktailsData} from "../../components/CardComponent/CardComponent";
 import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
-// import { useParams } from 'react-router-dom';
+import {SideBarContainer} from "../SideBarContainer/SideBarContainer";
+import {useAppDispatch, useAppSelector} from "../../state/hooks";
+import {sidebarOpen} from "../../state/slices/internalLogic";
 
 export function CocktailsContainer() {
-    const activeId = 'g'
-    const itemsList = ['a', 'b', 'c'];
     const cocktailsData: ICocktailsData[] = [];
 
-    // const { activeId } = useParams();
+    const sidebarState = useAppSelector((state) => state.internalLogic.sidebar);
+    const dispatch = useAppDispatch();
 
-    const handleSidebarItemClick = (itemKey: string) => {
-        console.log('Выбран элемент:', itemKey);
+    const handleSidebarOpenClick = () => {
+        dispatch(sidebarOpen());
     };
 
     return (
-        <div className="cocktails-container">
+        <div className={`cocktails-container ${sidebarState ? 'sidebar-open' : ''}`}>
             <header className="cocktails-navbar">
-                <NavBarComponent></NavBarComponent>
+                <NavBarComponent onMenuButtonClick={handleSidebarOpenClick} />
             </header>
             <div className="cocktails-content">
-                <div className="cocktails-sidebar-content">
-                    <SideBarComponent
-                        itemsList={itemsList}
-                        activeId={activeId}
-                        onItemClick={handleSidebarItemClick}
-                    ></SideBarComponent>
+                <div className={`cocktails-sidebar-content ${sidebarState ? 'sidebar--open' : ''}`}>
+                    <SideBarContainer />
                 </div>
-
                 <div className="cocktails-main-content">
-                    <CardListComponent
-                        cocktailsData={cocktailsData}
-                    ></CardListComponent>
+                    <CardListComponent cocktailsData={cocktailsData} />
                 </div>
             </div>
         </div>

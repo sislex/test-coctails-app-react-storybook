@@ -5,20 +5,66 @@
   min-width: 360px;
   max-width: 1024px;
   align-self: center;
+  position: relative;
 
   .cocktails-content {
     display: flex;
     flex-direction: row;
+    position: relative;
+    min-width: 360px;
 
     .cocktails-sidebar-content {
       width: 25%;
+      min-width: 200px;
+      transition: transform 0.3s ease;
+      background: var(--bs-white);
+
+      @media (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 300px;
+        transform: translateX(100%);
+        z-index: 1000;
+        box-shadow: var(--bs-box-shadow);
+
+        &.sidebar--open {
+          transform: translateX(0);
+        }
+      }
     }
 
     .cocktails-main-content {
       width: 75%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        min-width: 360px;
+      }
     }
 
+    @media (max-width: 768px) {
+      &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+    }
   }
 
-
+  &.sidebar-open {
+    .cocktails-content::before {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 }

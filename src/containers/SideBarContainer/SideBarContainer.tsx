@@ -1,17 +1,12 @@
 import './SideBarContainer.scss';
 import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
-import {useAppDispatch} from "../../state/hooks";
+import {useAppDispatch, useAppSelector} from "../../state/hooks";
 import {sidebarClose} from "../../state/slices/internalLogic";
 
-// import { useParams } from 'react-router-dom';
-
 export function SideBarContainer() {
-    const activeId = 'g'
-    const itemsList = ['a', 'b', 'c'];
-
+    const itemsList = useAppSelector((state) => state.cocktailsData.cocktailsList);
+    const activeItem = useAppSelector((state) => state.internalLogic.activePage);
     const dispatch = useAppDispatch();
-
-    // const { activeId } = useParams();
 
     const handleSidebarItemClick = (itemKey: string) => {
         console.log('Выбран элемент:', itemKey);
@@ -25,7 +20,7 @@ export function SideBarContainer() {
         <div>
             <SideBarComponent
                 itemsList={itemsList}
-                activeId={activeId}
+                activeItem={activeItem}
                 onItemClick={handleSidebarItemClick}
                 onCloseClick={handleSidebarCloseClick}
             ></SideBarComponent>

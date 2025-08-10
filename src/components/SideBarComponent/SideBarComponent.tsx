@@ -2,12 +2,12 @@ import './SideBarComponent.scss';
 
 export interface SideBarComponentProps {
     itemsList?: string[];
-    activeId?: string;
+    activeItem?: string;
     onItemClick?: (key: string) => void;
     onCloseClick?: () => void;
 }
 
-export function SideBarComponent({ itemsList, activeId, onItemClick, onCloseClick }: SideBarComponentProps) {
+export function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseClick }: SideBarComponentProps) {
 
     return (
         <div className="sidebar">
@@ -30,7 +30,7 @@ export function SideBarComponent({ itemsList, activeId, onItemClick, onCloseClic
                 {itemsList?.map((item) => (
                     <div
                         key={item}
-                        className={`sidebar-item ${activeId === item.toLowerCase() ? 'active' : ''}`}
+                        className={`sidebar-item ${activeItem === item.toLowerCase() ? 'active' : ''}`}
                         onClick={() => onItemClick?.(item)}
                     >
                         {item}

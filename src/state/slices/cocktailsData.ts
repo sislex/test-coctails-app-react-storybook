@@ -1,18 +1,21 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import {ICocktailsState} from "../type";
 
-const counter = (
-    state = 4,
-    action: { type: string }) => {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1;
-        default:
-            return state;
-    }
+const initialState: ICocktailsState = {
+    cocktailsData: [],
+    cocktailsList: ['Margarita', 'Mojito', 'A1', 'Kir'],
 };
 
-const rootReducer = combineReducers({
-    counter,
+const internalLogicSlice = createSlice({
+    name: 'internalLogic',
+    initialState,
+    reducers: {
+
+    },
 });
 
-export default rootReducer;
+// export const {
+//     sidebarClose,
+//     sidebarOpen,
+// } = internalLogicSlice.actions;
+export default internalLogicSlice.reducer;

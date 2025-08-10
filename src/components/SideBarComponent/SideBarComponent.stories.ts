@@ -12,7 +12,7 @@ const meta = {
   },
   tags: [],
   argTypes: {
-    activeId: {
+    activeItem: {
       control: 'select',
       options: ['a', 'b', 'c', 'd', 'other'],
       description: 'Currently active item ID'
@@ -34,6 +34,6 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     itemsList: ['a', 'b', 'c', 'd'],
-    activeId: 'c',
+    activeItem: 'c',
   },
 };

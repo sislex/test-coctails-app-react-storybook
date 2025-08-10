@@ -3,7 +3,7 @@ import {IInternalLogicState} from "../type";
 
 const initialState: IInternalLogicState = {
     sidebar: false,
-    activePage: null,
+    activePage: 'margarita',
 };
 
 const internalLogicSlice = createSlice({

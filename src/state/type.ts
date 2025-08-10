@@ -1,4 +1,9 @@
 export interface IInternalLogicState {
     sidebar: boolean;
-    activePage: string | null;
+    activePage: string | '';
+}
+
+export interface ICocktailsState {
+    cocktailsData: [],
+    cocktailsList: string[],
 }

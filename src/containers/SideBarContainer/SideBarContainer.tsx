@@ -1,7 +1,7 @@
 import './SideBarContainer.scss';
 import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
 import {useAppDispatch, useAppSelector} from "../../state/hooks";
-import {sidebarClose} from "../../state/slices/internalLogic";
+import {setActivePage, sidebarClose} from "../../state/internalLogic/internalLogicSlice";
 
 export function SideBarContainer() {
     const itemsList = useAppSelector((state) => state.cocktailsData.cocktailsList);
@@ -9,7 +9,8 @@ export function SideBarContainer() {
     const dispatch = useAppDispatch();
 
     const handleSidebarItemClick = (itemKey: string) => {
-        console.log('Выбран элемент:', itemKey);
+        dispatch(setActivePage(itemKey.toLowerCase()));
+        console.log('Выбран элемент:', itemKey.toLowerCase());
     };
 
     const handleSidebarCloseClick = () => {

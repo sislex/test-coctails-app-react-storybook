@@ -4,7 +4,7 @@ import {ICocktailsData} from "../../components/CardComponent/CardComponent";
 import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
 import {SideBarContainer} from "../SideBarContainer/SideBarContainer";
 import {useAppDispatch, useAppSelector} from "../../state/hooks";
-import {sidebarOpen} from "../../state/slices/internalLogic";
+import {sidebarOpen} from "../../state/internalLogic/internalLogicSlice";
 
 export function CocktailsContainer() {
     const cocktailsData: ICocktailsData[] = [];

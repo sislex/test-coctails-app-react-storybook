@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {ICocktailsState} from "../type";
+import {ICocktailsState} from "./coctailsDataType";
 
 const initialState: ICocktailsState = {
     cocktailsData: [],
     cocktailsList: ['Margarita', 'Mojito', 'A1', 'Kir',],
 };
 
-const internalLogicSlice = createSlice({
-    name: 'internalLogic',
+const cocktailsDataSlice = createSlice({
+    name: 'cocktailsDataLogic',
     initialState,
     reducers: {
 
@@ -18,4 +18,4 @@ const internalLogicSlice = createSlice({
 //     sidebarClose,
 //     sidebarOpen,
 // } = internalLogicSlice.actions;
-export default internalLogicSlice.reducer;
+export default cocktailsDataSlice.reducer;

@@ -7,16 +7,26 @@ import {sidebarOpen} from '../../state/view/view.slice';
 import {ICocktail} from "../../state/cocktails/cocktails.types";
 import {selectIsSidebarOpen} from '../../state/view/view.selectors';
 import {useSelector} from 'react-redux';
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import NavBarComponent from '../../components/NavBarComponent/NavBarComponent';
 import clsx from 'clsx';
+import {useParams} from 'react-router-dom';
+import { setSelectedCocktail } from '../../state/cocktails/cocktails.slice';
 
 
 function CocktailsContainer() {
-  const cocktailsData: ICocktail[] = [];
   const dispatch = useAppDispatch();
+  const { cocktailType } = useParams<{ cocktailType: string }>();
+  const cocktailsData: ICocktail[] = [];
 
   const isSidebarOpen = useSelector(selectIsSidebarOpen);
+
+  useEffect(() => {
+    if (cocktailType) {
+      dispatch(setSelectedCocktail(cocktailType));
+    }
+  }, [cocktailType, dispatch]);
+
 
   const handleSidebarOpenClick = useCallback(() => {
     dispatch(sidebarOpen());

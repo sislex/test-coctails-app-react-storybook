@@ -1,10 +1,15 @@
 import React from 'react';
 import './App.scss';
+import {Routes, Route,  BrowserRouter} from 'react-router-dom';
 import CocktailsContainer from './containers/CocktailsContainer/CocktailsContainer';
 
 function App() {
     return (
-        <CocktailsContainer></CocktailsContainer>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/:cocktailType" element={<CocktailsContainer />} />
+          </Routes>
+      </BrowserRouter>
     );
 }
 

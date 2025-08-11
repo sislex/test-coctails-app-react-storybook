@@ -1,13 +1,13 @@
 import './CocktailsContainer.scss';
 import {NavBarComponent} from "../../components/NavBarComponent/NavBarComponent";
-import {ICocktailsData} from "../../components/CardComponent/CardComponent";
 import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
 import {SideBarContainer} from "../SideBarContainer/SideBarContainer";
 import {useAppDispatch, useAppSelector} from "../../state/hooks";
 import {sidebarOpen} from '../../state/view/view.slice';
+import {ICocktail} from "../../state/cocktails/cocktails.types";
 
 export function CocktailsContainer() {
-    const cocktailsData: ICocktailsData[] = [];
+    const cocktailsData: ICocktail[] = [];
 
     const sidebarState = useAppSelector((state) => state.view.sidebar);
     const dispatch = useAppDispatch();

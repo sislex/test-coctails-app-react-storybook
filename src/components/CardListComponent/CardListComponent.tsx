@@ -1,18 +1,9 @@
 import './CardListComponent.scss';
 import {CardComponent} from "../CardComponent/CardComponent";
+import {ICocktail} from "../../state/cocktails/cocktails.types";
 
 export interface CardComponentProps {
-    cocktailsData: ICocktailsData[];
-}
-export interface ICocktailsData {
-    measureList: string[];
-    ingredientList: string[];
-    strDrink: string;
-    strCategory: string;
-    strAlcoholic: string;
-    strGlass: string;
-    strInstructions: string;
-    strDrinkThumb: string;
+    cocktailsData: ICocktail[];
 }
 
 export function CardListComponent({cocktailsData}: CardComponentProps) {

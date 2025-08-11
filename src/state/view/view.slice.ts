@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {IInternalLogicState} from "./internalLogicType";
+import {IViewState} from './view.types';
 
-const initialState: IInternalLogicState = {
+const initialState: IViewState = {
     sidebar: false,
     activePage: 'margarita',
 };
 
-const internalLogicSlice = createSlice({
-    name: 'internalLogic',
+const viewSlice = createSlice({
+    name: 'view',
     initialState,
     reducers: {
         sidebarClose: (state) => {
@@ -16,8 +16,8 @@ const internalLogicSlice = createSlice({
         sidebarOpen: (state) => {
             state.sidebar = true;
         },
-        setActivePage: (state, activePage) => {
-            state.activePage = activePage.payload;
+        setActivePage: (state, {payload}) => {
+            state.activePage = payload;
         },
     },
 });
@@ -26,5 +26,6 @@ export const {
     sidebarClose,
     sidebarOpen,
     setActivePage,
-} = internalLogicSlice.actions;
-export default internalLogicSlice.reducer;
+} = viewSlice.actions;
+
+export default viewSlice.reducer;

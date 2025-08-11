@@ -1,11 +1,11 @@
 import './SideBarContainer.scss';
 import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
 import {useAppDispatch, useAppSelector} from "../../state/hooks";
-import {setActivePage, sidebarClose} from "../../state/internalLogic/internalLogicSlice";
+import {setActivePage, sidebarClose} from '../../state/view/view.slice';
 
 export function SideBarContainer() {
-    const itemsList = useAppSelector((state) => state.cocktailsData.cocktailsList);
-    const activeItem = useAppSelector((state) => state.internalLogic.activePage);
+    const itemsList = useAppSelector((state) => state.cocktails.cocktailsList);
+    const activeItem = useAppSelector((state) => state.view.activePage);
     const dispatch = useAppDispatch();
 
     const handleSidebarItemClick = (itemKey: string) => {

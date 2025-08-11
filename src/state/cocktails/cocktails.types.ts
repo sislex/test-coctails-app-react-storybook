@@ -16,3 +16,8 @@ export interface ICocktail {
     ingredientList: string[];
     strDrinkThumb: string;
 }
+
+export interface API {
+    isLoading: boolean;
+    isLoaded: boolean;
+}

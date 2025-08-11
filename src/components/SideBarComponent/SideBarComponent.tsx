@@ -14,7 +14,7 @@ export function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseCl
 
             <header className="sidebar-header sidebar-static">
                 <div className="sidebar-logo">
-                    Logo
+                    Cocktails
                 </div>
                 <div className="sidebar-close-button">
                     <button aria-label="Open menu" className="icon" onClick={() => onCloseClick?.()}>
@@ -30,7 +30,7 @@ export function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseCl
                 {itemsList?.map((item) => (
                     <div
                         key={item}
-                        className={`sidebar-item ${activeItem === item.toLowerCase() ? 'active' : ''}`}
+                        className={`sidebar-item ${activeItem === item ? 'active' : ''}`}
                         onClick={() => onItemClick?.(item)}
                     >
                         {item}

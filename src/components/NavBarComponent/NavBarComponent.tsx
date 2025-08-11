@@ -10,7 +10,7 @@ function NavBarComponent({ onMenuButtonClick }: NavBarComponentProps) {
         <header className="navbar sticky-top">
 
             <div className="logo">
-                <p>Logo</p>
+                <p>Cocktails</p>
             </div>
 
             <div className="sidebar-button">

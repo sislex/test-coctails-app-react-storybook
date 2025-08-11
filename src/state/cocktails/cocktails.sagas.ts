@@ -1,16 +1,39 @@
-import { takeEvery } from 'redux-saga/effects';
+import { takeEvery, call, put, all, select } from 'redux-saga/effects';
+import {setSelectedCocktail, addCocktails} from "./cocktails.slice";
+import {selectCocktails} from "./cocktails.selectrors";
 
-// Пустая сага-заглушка (аналог пустого эффекта в NgRX)
-function* emptySaga() {
-  // Пока ничего не делает, но может отслеживать экшены
+async function fetchCocktailByName(name: string) {
+  return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name.toLowerCase()}`)
+      .then((res) => res.json());
 }
 
-// Watcher Saga (отслеживает экшены)
-export function* watchEmptySaga() {
-  yield takeEvery('SOME_ACTION_TYPE', emptySaga); // Ловит экшен, но не обрабатывает
+function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCocktail>): any {
+  const cocktailType = action.payload;
+
+  const cocktails = yield select(selectCocktails);
+
+  if (cocktails[cocktailType]) {
+    console.log(`Коктейли для "${cocktailType}" уже есть в кеше`, cocktails[cocktailType]);
+  } else {
+    try {
+      const data = yield call(fetchCocktailByName, cocktailType);
+      if (data.drinks) {
+        yield put(addCocktails({cocktailType, data}));
+      } else {
+        console.error('Список коктейлей пуст', data);
+      }
+    } catch (error) {
+      console.error('Ошибка при запросе коктейля:', error);
+    }
+  }
 }
 
-// Корневая сага (входная точка)
+export function* watchSelectedCocktail() {
+  yield takeEvery(setSelectedCocktail.type, handleSelectedCocktailChange);
+}
+
 export default function* rootSaga() {
-  yield watchEmptySaga(); // Подключаем watcher
+  yield all([
+    watchSelectedCocktail(),
+  ]);
 }

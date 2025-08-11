@@ -1,0 +1,20 @@
+.not-found {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    color: var(--bs-purple);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: var(--bs-body-font-weight);
+    font-size: 16px;
+
+    svg {
+        animation: spin 1s linear infinite;
+        width: 48px;
+        height: 48px;
+    }
+}

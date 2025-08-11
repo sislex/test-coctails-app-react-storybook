@@ -2,13 +2,20 @@ import './SideBarContainer.scss';
 import {SideBarComponent} from "../../components/SideBarComponent/SideBarComponent";
 import {useAppDispatch, useAppSelector} from "../../state/hooks";
 import {sidebarClose} from '../../state/view/view.slice';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
+import {useEffect} from "react";
 
 export function SideBarContainer() {
     const navigate = useNavigate();
     const itemsList = useAppSelector((state) => state.cocktails.cocktailsTypesList);
-    const activeItem = useAppSelector((state) => state.cocktails.selectedCocktailType);
     const dispatch = useAppDispatch();
+    const { cocktailType } = useParams();
+
+    useEffect(() => {
+        if (!cocktailType && itemsList.length > 0) {
+            navigate(`/${itemsList[0]}`, { replace: true });
+        }
+    }, [cocktailType, itemsList, navigate]);
 
     const handleSidebarItemClick = (itemKey: string) => {
         navigate('/' + itemKey);
@@ -19,11 +26,11 @@ export function SideBarContainer() {
     };
 
     return (
-      <SideBarComponent
-        itemsList={itemsList}
-        activeItem={activeItem}
-        onItemClick={handleSidebarItemClick}
-        onCloseClick={handleSidebarCloseClick}
-      ></SideBarComponent>
+        <SideBarComponent
+            itemsList={itemsList}
+            activeItem={cocktailType}
+            onItemClick={handleSidebarItemClick}
+            onCloseClick={handleSidebarCloseClick}
+        ></SideBarComponent>
     );
 }

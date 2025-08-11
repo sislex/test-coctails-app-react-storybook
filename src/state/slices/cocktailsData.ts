@@ -3,7 +3,7 @@ import {ICocktailsState} from "../type";
 
 const initialState: ICocktailsState = {
     cocktailsData: [],
-    cocktailsList: ['Margarita', 'Mojito', 'A1', 'Kir'],
+    cocktailsList: ['Margarita', 'Mojito', 'A1', 'Kir',],
 };
 
 const internalLogicSlice = createSlice({

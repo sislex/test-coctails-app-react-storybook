@@ -1,34 +1,45 @@
 import './CocktailsContainer.scss';
-import {NavBarComponent} from "../../components/NavBarComponent/NavBarComponent";
+
 import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
 import {SideBarContainer} from "../SideBarContainer/SideBarContainer";
-import {useAppDispatch, useAppSelector} from "../../state/hooks";
+import {useAppDispatch} from "../../state/hooks";
 import {sidebarOpen} from '../../state/view/view.slice';
 import {ICocktail} from "../../state/cocktails/cocktails.types";
+import {selectIsSidebarOpen} from '../../state/view/view.selectors';
+import {useSelector} from 'react-redux';
+import React, {useCallback} from 'react';
+import NavBarComponent from '../../components/NavBarComponent/NavBarComponent';
+import clsx from 'clsx';
 
-export function CocktailsContainer() {
-    const cocktailsData: ICocktail[] = [];
 
-    const sidebarState = useAppSelector((state) => state.view.sidebar);
-    const dispatch = useAppDispatch();
+function CocktailsContainer() {
+  const cocktailsData: ICocktail[] = [];
+  const dispatch = useAppDispatch();
 
-    const handleSidebarOpenClick = () => {
-        dispatch(sidebarOpen());
-    };
+  const isSidebarOpen = useSelector(selectIsSidebarOpen);
 
-    return (
-        <div className={`cocktails-container ${sidebarState ? 'sidebar-open' : ''}`}>
-            <header className="cocktails-navbar">
-                <NavBarComponent onMenuButtonClick={handleSidebarOpenClick} />
-            </header>
-            <div className="cocktails-content">
-                <div className={`cocktails-sidebar-content ${sidebarState ? 'sidebar--open' : ''}`}>
-                    <SideBarContainer />
-                </div>
-                <div className="cocktails-main-content">
-                    <CardListComponent cocktailsData={cocktailsData} />
-                </div>
-            </div>
+  const handleSidebarOpenClick = useCallback(() => {
+    dispatch(sidebarOpen());
+  }, [dispatch]);
+
+  return (
+    <div className="cocktails-container">
+      <header className="cocktails-navbar">
+        <NavBarComponent onMenuButtonClick={handleSidebarOpenClick} />
+      </header>
+      <div className={clsx(
+        'cocktails-content',
+        { 'sidebar-open': isSidebarOpen},
+      )}>
+        <div className="cocktails-sidebar-content">
+          <SideBarContainer />
         </div>
-    );
+        <div className="cocktails-main-content">
+          <CardListComponent cocktailsData={cocktailsData} />
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default React.memo(CocktailsContainer);

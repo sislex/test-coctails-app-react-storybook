@@ -1,3 +1,3 @@
 export interface IViewState {
-    sidebar: boolean;
+    isSidebarOpen: boolean;
 }

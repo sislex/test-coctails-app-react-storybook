@@ -18,13 +18,11 @@ export function SideBarContainer() {
     };
 
     return (
-        <div>
-            <SideBarComponent
-                itemsList={itemsList}
-                activeItem={activeItem}
-                onItemClick={handleSidebarItemClick}
-                onCloseClick={handleSidebarCloseClick}
-            ></SideBarComponent>
-        </div>
+      <SideBarComponent
+        itemsList={itemsList}
+        activeItem={activeItem}
+        onItemClick={handleSidebarItemClick}
+        onCloseClick={handleSidebarCloseClick}
+      ></SideBarComponent>
     );
 }

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {IViewState} from './view.types';
 
 const initialState: IViewState = {
-    sidebar: false,
+    isSidebarOpen: false,
 };
 
 const viewSlice = createSlice({
@@ -10,10 +10,10 @@ const viewSlice = createSlice({
     initialState,
     reducers: {
         sidebarClose: (state) => {
-            state.sidebar = false;
+            state.isSidebarOpen = false;
         },
         sidebarOpen: (state) => {
-            state.sidebar = true;
+            state.isSidebarOpen = true;
         },
     },
 });

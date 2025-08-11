@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import {NavBarComponent} from './NavBarComponent';
+import NavBarComponent from './NavBarComponent';
 import './NavBarComponent.scss';
 import '../../index.css';
 import {fn} from "storybook/test";

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {CocktailsContainer} from "./containers/CocktailsContainer/CocktailsContainer";
+import CocktailsContainer from './containers/CocktailsContainer/CocktailsContainer';
 
 function App() {
     return (

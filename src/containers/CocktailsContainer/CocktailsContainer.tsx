@@ -30,15 +30,18 @@ function CocktailsContainer() {
   const cocktailsDataIsLoading = useSelector(selectedCocktailsDataIsLoading);
   const notificationList = useSelector(selectedNotificationList);
 
+
   useEffect(() => {
     if (cocktailType) {
-      dispatch(setSelectedCocktail(cocktailType));
+      if (cocktailType && !cocktailsList.includes(cocktailType)) {
+        navigate(`/not-found`)
+      } else {
+        dispatch(setSelectedCocktail(cocktailType));
+      }
+    } else if (!cocktailType && cocktailsList.length > 0) {
+      navigate(`/${cocktailsList[0]}`, { replace: true });
     }
-    if (cocktailType && !cocktailsList.includes(cocktailType)) {
-      navigate(`/not-found`)
-    }
-  }, [cocktailType, dispatch, navigate, cocktailsList]);
-
+  }, [cocktailType, cocktailsList, navigate, dispatch]);
 
   const handleSidebarOpenClick = useCallback(() => {
     dispatch(sidebarOpen());
@@ -50,10 +53,6 @@ function CocktailsContainer() {
           <NavBarComponent onMenuButtonClick={handleSidebarOpenClick} />
         </header>
 
-        {notificationList && (
-            <NotificationContainer></NotificationContainer>
-        )}
-
         <div className={clsx(
             'cocktails-content',
             { 'sidebar-open': isSidebarOpen},
@@ -62,14 +61,11 @@ function CocktailsContainer() {
             <SideBarContainer />
           </div>
           <div className="cocktails-main-content">
-            {cocktailsDataIsLoaded && (
-                <CardListComponent cocktailsData={cocktailsData} />
-            )}
+            {cocktailsDataIsLoaded && <CardListComponent cocktailsData={cocktailsData} />}
+            {cocktailsDataIsLoading && <LoaderComponent />}
           </div>
-          {cocktailsDataIsLoading && (
-              <LoaderComponent />
-          )}
         </div>
+        {notificationList && <NotificationContainer />}
       </div>
   );
 }

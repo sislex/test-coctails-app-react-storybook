@@ -1,26 +1,21 @@
 import './SideBarContainer.scss';
 import {useAppDispatch} from "../../state/hooks";
 import {sidebarClose} from '../../state/view/view.slice';
-import {useNavigate, useParams} from 'react-router-dom';
-import React, {useEffect} from "react";
+import {useNavigate} from 'react-router-dom';
+import React  from "react";
 import {useSelector} from "react-redux";
-import {selectCocktailsTypesList} from "../../state/cocktails/cocktails.selectrors";
+import {selectCocktailsTypesList, selectedCocktailType} from '../../state/cocktails/cocktails.selectrors';
 import SideBarComponent from "../../components/SideBarComponent/SideBarComponent";
 
 function SideBarContainer() {
     const dispatch = useAppDispatch();
-    const { cocktailType } = useParams();
     const navigate = useNavigate();
+    const cocktailType = useSelector(selectedCocktailType);
     const itemsList = useSelector(selectCocktailsTypesList);
-
-    useEffect(() => {
-        if (!cocktailType && itemsList.length > 0) {
-            navigate(`/${itemsList[0]}`, { replace: true });
-        }
-    }, [cocktailType, itemsList, navigate]);
 
     const handleSidebarItemClick = (itemKey: string) => {
         navigate('/' + itemKey);
+        handleSidebarCloseClick();
     };
 
     const handleSidebarCloseClick = () => {

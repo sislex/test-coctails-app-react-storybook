@@ -1,4 +1,5 @@
 import {RootState} from '../store';
+import {createSelector} from '@reduxjs/toolkit';
 
 export const selectCocktailsState = (state: RootState) => state.cocktails;
 
@@ -7,8 +8,11 @@ export const selectCocktailsTypesList = (state: RootState) => selectCocktailsSta
 export const selectedCocktailType = (state: RootState) => selectCocktailsState(state).selectedCocktailType;
 export const selectedCocktailsDataIsLoaded = (state: RootState) => selectCocktailsState(state).cocktailsAPI.isLoaded;
 export const selectedCocktailsDataIsLoading = (state: RootState) => selectCocktailsState(state).cocktailsAPI.isLoading;
-export const selectCocktailsForSelectedType = (state: RootState) => {
-    const cocktailsState = selectCocktailsState(state);
-    const selectedType = cocktailsState.selectedCocktailType;
-    return cocktailsState.cocktails[selectedType] || [];
-};
+
+export const selectCocktailsForSelectedType = createSelector(
+  [selectCocktailsState],
+  (cocktailsState) => {
+      const selectedType = cocktailsState.selectedCocktailType;
+      return cocktailsState.cocktails[selectedType] || [];
+  }
+);

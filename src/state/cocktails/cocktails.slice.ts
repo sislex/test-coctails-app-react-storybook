@@ -3,7 +3,7 @@ import {ICocktailsState} from "./cocktails.types";
 
 const initialState: ICocktailsState = {
     cocktails: {},
-    cocktailsTypesList: ['Margarita', 'Mojito', 'A1', 'Kir', 'Test'],
+    cocktailsTypesList: ['Margarita', 'Mojito', 'A1', 'Kir', 'Test Error'],
     selectedCocktailType: 'Margarita',
     cocktailsAPI: {
         startTime: null,
@@ -20,7 +20,7 @@ const cocktailsSlice = createSlice({
         setSelectedCocktail: (state, {payload}) => {
             state.selectedCocktailType = payload;
         },
-        setStartTimeApi: (state, ) => {
+        startLoadApi: (state, ) => {
             state.cocktailsAPI = {
                 startTime: Date.now(),
                 loadingTime: null,
@@ -28,7 +28,7 @@ const cocktailsSlice = createSlice({
                 isLoaded: false,
             };
         },
-        setLoadingTimeApi: (state,) => {
+        stopLoadApi: (state,) => {
             const endTime = Date.now();
             const duration = endTime - (state.cocktailsAPI.startTime || endTime);
             state.cocktailsAPI = {
@@ -48,7 +48,7 @@ const cocktailsSlice = createSlice({
 export const {
     setSelectedCocktail,
     addCocktails,
-    setStartTimeApi,
-    setLoadingTimeApi
+    startLoadApi,
+    stopLoadApi,
 } = cocktailsSlice.actions;
 export default cocktailsSlice.reducer;

@@ -1,13 +1,8 @@
 import { takeEvery, call, put, select } from 'redux-saga/effects';
-import {setSelectedCocktail, addCocktails, setStartTimeApi, setLoadingTimeApi} from "./cocktails.slice";
+import {setSelectedCocktail, addCocktails, startLoadApi, stopLoadApi} from './cocktails.slice';
 import {selectCocktails} from "./cocktails.selectrors";
 import {requestShowError} from "../view/view.slice";
-
-async function fetchCocktailByName(name: string) {
-  const API_URL = process.env.REACT_APP_COCKTAIL_API;
-  return fetch(`${API_URL}/search.php?s=${name.toLowerCase()}`)
-      .then((res) => res.json());
-}
+import {fetchCocktailByName} from '../../api/cocktailsApi';
 
 function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCocktail>): any {
   const cocktailType = action.payload;
@@ -16,22 +11,25 @@ function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCock
 
   if (cocktails[cocktailType]) {
     console.log(`Cocktails for "${cocktailType}" already in cache`, cocktails[cocktailType]);
+    yield put(stopLoadApi());
   } else {
     try {
-      yield put(setStartTimeApi());
+      yield put(startLoadApi());
       const data = yield call(fetchCocktailByName, cocktailType);
       if (data.drinks) {
         yield put(addCocktails({cocktailType, data}));
-        yield put(setLoadingTimeApi());
+        yield put(stopLoadApi());
       } else {
         yield put(requestShowError({ message: `The list of cocktails "${cocktailType}" is empty` }));
+        yield put(stopLoadApi());
       }
     } catch (error) {
-      yield put(requestShowError({ message: `'Error requesting cocktail:' "${error}"` }));
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      yield put(requestShowError({ message: `Error requesting cocktail: ${errorMessage}` }));
     }
   }
 }
 
-export function* watchSelectedCocktail() {
+export function* cocktailSagas() {
   yield takeEvery(setSelectedCocktail.type, handleSelectedCocktailChange);
 }

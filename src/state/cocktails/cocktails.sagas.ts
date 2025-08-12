@@ -1,5 +1,5 @@
 import { takeEvery, call, put, all, select } from 'redux-saga/effects';
-import {setSelectedCocktail, addCocktails} from "./cocktails.slice";
+import {setSelectedCocktail, addCocktails, setStartTimeApi, setLoadingTimeApi} from "./cocktails.slice";
 import {selectCocktails} from "./cocktails.selectrors";
 
 async function fetchCocktailByName(name: string) {
@@ -13,12 +13,14 @@ function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCock
   const cocktails = yield select(selectCocktails);
 
   if (cocktails[cocktailType]) {
-    console.log(`Коктейли для "${cocktailType}" уже есть в кеше`, cocktails[cocktailType]);
+    console.log(`Cocktails for "${cocktailType}" already in cache`, cocktails[cocktailType]);
   } else {
     try {
+      yield put(setStartTimeApi());
       const data = yield call(fetchCocktailByName, cocktailType);
       if (data.drinks) {
         yield put(addCocktails({cocktailType, data}));
+        yield put(setLoadingTimeApi());
       } else {
         console.error('Список коктейлей пуст', data);
       }

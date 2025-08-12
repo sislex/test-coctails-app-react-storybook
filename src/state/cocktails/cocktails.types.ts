@@ -4,6 +4,7 @@ export interface ICocktailsState {
         [cocktailsType: string]: ICocktail[];
     };
     selectedCocktailType: string;
+    cocktailsAPI: API;
 }
 
 export interface ICocktail {
@@ -18,6 +19,9 @@ export interface ICocktail {
 }
 
 export interface API {
+    startTime: number | null;
+    loadingTime: number | null;
     isLoading: boolean;
     isLoaded: boolean;
+    error?: any;
 }

@@ -1,12 +1,13 @@
 import './CardListComponent.scss';
-import {CardComponent} from "../CardComponent/CardComponent";
 import {ICocktail} from "../../state/cocktails/cocktails.types";
+import React from "react";
+import CardComponent from "../CardComponent/CardComponent";
 
 export interface CardComponentProps {
     cocktailsData: ICocktail[];
 }
 
-export function CardListComponent({cocktailsData}: CardComponentProps) {
+function CardListComponent({cocktailsData}: CardComponentProps) {
     return (
         <div>
             {cocktailsData.map((cocktail, index) => (
@@ -22,3 +23,5 @@ export function CardListComponent({cocktailsData}: CardComponentProps) {
         </div>
     );
 }
+
+export default React.memo(CardListComponent);

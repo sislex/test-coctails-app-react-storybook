@@ -5,6 +5,12 @@ const initialState: ICocktailsState = {
     cocktails: {},
     cocktailsTypesList: ['Margarita', 'Mojito', 'A1', 'Kir',],
     selectedCocktailType: 'Margarita',
+    cocktailsAPI: {
+        startTime: null,
+        loadingTime: null,
+        isLoading: false,
+        isLoaded: false,
+    }
 };
 
 const cocktailsSlice = createSlice({
@@ -13,6 +19,24 @@ const cocktailsSlice = createSlice({
     reducers: {
         setSelectedCocktail: (state, {payload}) => {
             state.selectedCocktailType = payload;
+        },
+        setStartTimeApi: (state, ) => {
+            state.cocktailsAPI = {
+                startTime: Date.now(),
+                loadingTime: null,
+                isLoading: true,
+                isLoaded: false,
+            };
+        },
+        setLoadingTimeApi: (state,) => {
+            const endTime = Date.now();
+            const duration = endTime - (state.cocktailsAPI.startTime || endTime);
+            state.cocktailsAPI = {
+                ...state.cocktailsAPI,
+                loadingTime: duration,
+                isLoading: false,
+                isLoaded: true,
+            };
         },
         addCocktails: (state, action) => {
             const { cocktailType, data } = action.payload;
@@ -23,6 +47,8 @@ const cocktailsSlice = createSlice({
 
 export const {
     setSelectedCocktail,
-    addCocktails
+    addCocktails,
+    setStartTimeApi,
+    setLoadingTimeApi
 } = cocktailsSlice.actions;
 export default cocktailsSlice.reducer;

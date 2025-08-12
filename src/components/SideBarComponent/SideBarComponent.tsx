@@ -1,4 +1,5 @@
 import './SideBarComponent.scss';
+import React from "react";
 
 export interface SideBarComponentProps {
     itemsList?: string[];
@@ -7,7 +8,7 @@ export interface SideBarComponentProps {
     onCloseClick?: () => void;
 }
 
-export function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseClick }: SideBarComponentProps) {
+function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseClick }: SideBarComponentProps) {
 
     return (
         <div className="sidebar">
@@ -40,3 +41,5 @@ export function SideBarComponent({ itemsList, activeItem, onItemClick, onCloseCl
         </div>
     );
 }
+
+export default React.memo(SideBarComponent);

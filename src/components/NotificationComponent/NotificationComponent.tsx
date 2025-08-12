@@ -1,10 +1,11 @@
 import './NotificationComponent.scss';
+import React from "react";
 
 export interface NotificationComponentProps {
     notificationText?: string;
 }
 
-export function NotificationComponent({notificationText}: NotificationComponentProps) {
+function NotificationComponent({notificationText}: NotificationComponentProps) {
     return (
         <div className="notification">
             <div className="notification-panel" role="alert">
@@ -18,3 +19,5 @@ export function NotificationComponent({notificationText}: NotificationComponentP
         </div>
     );
 }
+
+export default React.memo(NotificationComponent);

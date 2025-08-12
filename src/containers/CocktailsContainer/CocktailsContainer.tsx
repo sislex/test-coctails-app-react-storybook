@@ -1,7 +1,4 @@
 import './CocktailsContainer.scss';
-
-import {CardListComponent} from "../../components/CardListComponent/CardListComponent";
-import {SideBarContainer} from "../SideBarContainer/SideBarContainer";
 import {useAppDispatch} from "../../state/hooks";
 import {sidebarOpen} from '../../state/view/view.slice';
 import {selectIsSidebarOpen} from '../../state/view/view.selectors';
@@ -13,8 +10,13 @@ import {useNavigate, useParams} from 'react-router-dom';
 import { setSelectedCocktail } from '../../state/cocktails/cocktails.slice';
 import {
   selectCocktailsForSelectedType,
-  selectCocktailsTypesList
+  selectCocktailsTypesList,
+  selectedCocktailsDataIsLoaded,
+  selectedCocktailsDataIsLoading,
 } from "../../state/cocktails/cocktails.selectrors";
+import {LoaderComponent} from "../../components/LoaderComponent/LoaderComponent";
+import SideBarContainer from "../SideBarContainer/SideBarContainer";
+import CardListComponent from "../../components/CardListComponent/CardListComponent";
 
 function CocktailsContainer() {
   const navigate = useNavigate();
@@ -23,6 +25,8 @@ function CocktailsContainer() {
   const isSidebarOpen = useSelector(selectIsSidebarOpen);
   const cocktailsData = useSelector(selectCocktailsForSelectedType);
   const cocktailsList = useSelector(selectCocktailsTypesList);
+  const cocktailsDataIsLoaded = useSelector(selectedCocktailsDataIsLoaded);
+  const cocktailsDataIsLoading = useSelector(selectedCocktailsDataIsLoading);
 
   useEffect(() => {
     if (cocktailType) {
@@ -51,8 +55,15 @@ function CocktailsContainer() {
             <SideBarContainer />
           </div>
           <div className="cocktails-main-content">
-            <CardListComponent cocktailsData={cocktailsData} />
+            {cocktailsDataIsLoaded && (
+                <CardListComponent cocktailsData={cocktailsData} />
+            )}
           </div>
+          {cocktailsDataIsLoading && (
+              <div>
+                <LoaderComponent />
+              </div>
+          )}
         </div>
       </div>
   );

@@ -2,6 +2,7 @@ import './CardListComponent.scss';
 import {ICocktail} from "../../state/cocktails/cocktails.types";
 import React from "react";
 import CardComponent from "../CardComponent/CardComponent";
+import {NotFoundComponent} from '../NotFoundComponent/NotFoundComponent';
 
 export interface CardComponentProps {
     cocktailsData: ICocktail[];
@@ -9,8 +10,9 @@ export interface CardComponentProps {
 
 function CardListComponent({cocktailsData}: CardComponentProps) {
     return (
-        <div>
-            {cocktailsData.map((cocktail, index) => (
+        <>
+            {!cocktailsData.length && <NotFoundComponent />}
+            {!!cocktailsData.length && cocktailsData.map((cocktail, index) => (
                 <div
                     key={index}
                     className="card"
@@ -20,7 +22,7 @@ function CardListComponent({cocktailsData}: CardComponentProps) {
                     ></CardComponent>
                 </div>
             ))}
-        </div>
+        </>
     );
 }
 

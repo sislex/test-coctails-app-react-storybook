@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import {NotificationComponent} from './NotificationComponent';
 import './NotificationComponent.scss';
 import '../../index.css';
+import NotificationComponent from "./NotificationComponent";
 
 const meta = {
   title: 'Components/NotificationComponent',

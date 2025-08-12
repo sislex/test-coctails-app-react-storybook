@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import {SideBarComponent} from './SideBarComponent';
 import './SideBarComponent.scss';
 import '../../index.css';
 import {fn} from "storybook/test";
+import SideBarComponent from "./SideBarComponent";
 
 const meta = {
   title: 'Components/SideBarComponent',

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import {CardListComponent} from './CardListComponent';
 import './CardListComponent.scss';
 import '../../index.css';
+import CardListComponent from "./CardListComponent";
 
 const meta = {
   title: 'Components/CardListComponent',

@@ -4,7 +4,8 @@ import {selectCocktails} from "./cocktails.selectrors";
 import {requestShowError} from "../view/view.slice";
 
 async function fetchCocktailByName(name: string) {
-  return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name.toLowerCase()}`)
+  const API_URL = process.env.REACT_APP_COCKTAIL_API;
+  return fetch(`${API_URL}/search.php?s=${name.toLowerCase()}`)
       .then((res) => res.json());
 }
 
@@ -23,11 +24,10 @@ function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCock
         yield put(addCocktails({cocktailType, data}));
         yield put(setLoadingTimeApi());
       } else {
-        yield put(requestShowError({ message: `Список коктейлей "${cocktailType}" пуст` }));
-        console.error('Список коктейлей пуст', data);
+        yield put(requestShowError({ message: `The list of cocktails "${cocktailType}" is empty` }));
       }
     } catch (error) {
-      console.error('Ошибка при запросе коктейля:', error);
+      yield put(requestShowError({ message: `'Error requesting cocktail:' "${error}"` }));
     }
   }
 }

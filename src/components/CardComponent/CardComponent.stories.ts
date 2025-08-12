@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import './CardComponent.scss';
-import '../../index.css';
+import '../../index.scss';
 import CardComponent from "./CardComponent";
 
 const meta = {

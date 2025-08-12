@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import NavBarComponent from './NavBarComponent';
 import './NavBarComponent.scss';
-import '../../index.css';
+import '../../index.scss';
 import {fn} from "storybook/test";
 
 const meta = {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import {LoaderComponent} from './LoaderComponent';
 import './LoaderComponent.scss';
-import '../../index.css';
+import '../../index.scss';
 
 const meta = {
   title: 'Components/LoaderComponent',

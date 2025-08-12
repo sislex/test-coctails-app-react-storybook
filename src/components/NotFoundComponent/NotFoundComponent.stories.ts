@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
 import {NotFoundComponent} from './NotFoundComponent';
 import './NotFoundComponent.scss';
-import '../../index.css';
+import '../../index.scss';
 
 const meta = {
   title: 'Components/NotFoundComponent',

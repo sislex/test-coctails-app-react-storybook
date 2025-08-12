@@ -3,7 +3,7 @@ import {ICocktailsState} from "./cocktails.types";
 
 const initialState: ICocktailsState = {
     cocktails: {},
-    cocktailsTypesList: ['Margarita', 'Mojito', 'A1', 'Kir',],
+    cocktailsTypesList: ['Margarita', 'Mojito', 'A1', 'Kir', 'Test'],
     selectedCocktailType: 'Margarita',
     cocktailsAPI: {
         startTime: null,

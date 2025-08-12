@@ -1,16 +1,23 @@
-import { takeEvery } from 'redux-saga/effects';
+import { put, select, takeEvery, delay } from 'redux-saga/effects';
+import {hideErrorPopup, requestShowError, showErrorPopup} from './view.slice';
+import { selectPopupIds } from './view.selectors';
 
-// Пустая сага-заглушка (аналог пустого эффекта в NgRX)
-function* emptySaga() {
-  // Пока ничего не делает, но может отслеживать экшены
+function getNextId(existingIds: number[]) {
+  if (existingIds.length === 0) return 1;
+  return Math.max(...existingIds) + 1;
 }
 
-// Watcher Saga (отслеживает экшены)
-export function* watchEmptySaga() {
-  yield takeEvery('SOME_ACTION_TYPE', emptySaga); // Ловит экшен, но не обрабатывает
+function* showErrorPopupSaga(action: ReturnType<typeof requestShowError>) {
+  const message = action.payload?.message || 'default error';
+  const existingIds: number[] = yield select(selectPopupIds);
+  const id = getNextId(existingIds);
+
+  yield put(showErrorPopup({ id, message }));
+  yield delay(3000);
+  yield put(hideErrorPopup(id));
 }
 
-// Корневая сага (входная точка)
-export default function* rootSaga() {
-  yield watchEmptySaga(); // Подключаем watcher
+export function* watchShowError() {
+  yield takeEvery(requestShowError.type, showErrorPopupSaga);
 }
+

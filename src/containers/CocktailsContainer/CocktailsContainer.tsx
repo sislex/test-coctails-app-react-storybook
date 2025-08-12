@@ -1,7 +1,7 @@
 import './CocktailsContainer.scss';
 import {useAppDispatch} from "../../state/hooks";
 import {sidebarOpen} from '../../state/view/view.slice';
-import {selectIsSidebarOpen} from '../../state/view/view.selectors';
+import {selectedNotificationList, selectIsSidebarOpen} from '../../state/view/view.selectors';
 import {useSelector} from 'react-redux';
 import React, {useCallback, useEffect} from 'react';
 import NavBarComponent from '../../components/NavBarComponent/NavBarComponent';
@@ -17,6 +17,7 @@ import {
 import {LoaderComponent} from "../../components/LoaderComponent/LoaderComponent";
 import SideBarContainer from "../SideBarContainer/SideBarContainer";
 import CardListComponent from "../../components/CardListComponent/CardListComponent";
+import {NotificationContainer} from "../NotificationContainer/NotificationContainer";
 
 function CocktailsContainer() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function CocktailsContainer() {
   const cocktailsList = useSelector(selectCocktailsTypesList);
   const cocktailsDataIsLoaded = useSelector(selectedCocktailsDataIsLoaded);
   const cocktailsDataIsLoading = useSelector(selectedCocktailsDataIsLoading);
+  const notificationList = useSelector(selectedNotificationList);
 
   useEffect(() => {
     if (cocktailType) {
@@ -47,6 +49,11 @@ function CocktailsContainer() {
         <header className="cocktails-navbar">
           <NavBarComponent onMenuButtonClick={handleSidebarOpenClick} />
         </header>
+
+        {notificationList && (
+            <NotificationContainer></NotificationContainer>
+        )}
+
         <div className={clsx(
             'cocktails-content',
             { 'sidebar-open': isSidebarOpen},
@@ -60,9 +67,7 @@ function CocktailsContainer() {
             )}
           </div>
           {cocktailsDataIsLoading && (
-              <div>
-                <LoaderComponent />
-              </div>
+              <LoaderComponent />
           )}
         </div>
       </div>

@@ -1,6 +1,7 @@
-import { takeEvery, call, put, all, select } from 'redux-saga/effects';
+import { takeEvery, call, put, select } from 'redux-saga/effects';
 import {setSelectedCocktail, addCocktails, setStartTimeApi, setLoadingTimeApi} from "./cocktails.slice";
 import {selectCocktails} from "./cocktails.selectrors";
+import {requestShowError} from "../view/view.slice";
 
 async function fetchCocktailByName(name: string) {
   return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name.toLowerCase()}`)
@@ -22,6 +23,7 @@ function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCock
         yield put(addCocktails({cocktailType, data}));
         yield put(setLoadingTimeApi());
       } else {
+        yield put(requestShowError({ message: `Список коктейлей "${cocktailType}" пуст` }));
         console.error('Список коктейлей пуст', data);
       }
     } catch (error) {
@@ -32,10 +34,4 @@ function* handleSelectedCocktailChange(action: ReturnType<typeof setSelectedCock
 
 export function* watchSelectedCocktail() {
   yield takeEvery(setSelectedCocktail.type, handleSelectedCocktailChange);
-}
-
-export default function* rootSaga() {
-  yield all([
-    watchSelectedCocktail(),
-  ]);
 }

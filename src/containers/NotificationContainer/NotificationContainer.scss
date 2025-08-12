@@ -1,0 +1,18 @@
+.notification-container {
+  position: fixed;
+  bottom: 16px;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 16px;
+  z-index: 9999;
+  pointer-events: none;
+  padding: 0 16px;
+  box-sizing: border-box;
+
+  .notification-component {
+    width: 100%;
+  }
+}
